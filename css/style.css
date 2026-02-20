@@ -271,6 +271,13 @@ ul {
   color: #999;
 }
 
+.tweet-box-input:focus {
+  border-color: #55ACEE;
+  background: #fff;
+  color: #333;
+  outline: none;
+}
+
 .tweet-btn {
   background: linear-gradient(to bottom, #55ACEE, #2795D9);
   color: #fff;
@@ -281,6 +288,20 @@ ul {
   padding: 5px 14px;
   cursor: default;
   opacity: 0.6;
+}
+
+.tweet-btn.active {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.tweet-btn.active:hover {
+  background: linear-gradient(to bottom, #6FBEF5, #2795D9);
+}
+
+.tweet-counter.warning {
+  color: #D40D12;
+  font-weight: bold;
 }
 
 /* --- Timeline --- */

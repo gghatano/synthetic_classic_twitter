@@ -108,6 +108,50 @@
     }, delay);
   }
 
+  // --- ユーザー投稿機能 ---
+  var MY_USER = { name: "やまだ たろう", screen: "yamada_taro_11", color: "#55ACEE" };
+  var tweetInput = document.getElementById("tweet-input");
+  var tweetBtn = document.getElementById("tweet-btn");
+  var tweetCounter = document.getElementById("tweet-counter");
+
+  function updateCounter() {
+    var remaining = 140 - tweetInput.value.length;
+    tweetCounter.textContent = remaining;
+    if (remaining < 0) {
+      tweetCounter.className = "tweet-counter warning";
+      tweetBtn.className = "tweet-btn";
+    } else if (remaining < 140) {
+      tweetCounter.className = remaining <= 20 ? "tweet-counter warning" : "tweet-counter";
+      tweetBtn.className = "tweet-btn active";
+    } else {
+      tweetCounter.className = "tweet-counter";
+      tweetBtn.className = "tweet-btn";
+    }
+  }
+
+  function postUserTweet() {
+    var text = tweetInput.value.trim();
+    if (text.length === 0 || text.length > 140) return;
+    addTweet({
+      user: MY_USER,
+      text: text,
+      time: Date.now(),
+      rt: 0,
+      fav: 0
+    });
+    tweetInput.value = "";
+    updateCounter();
+  }
+
+  tweetInput.addEventListener("input", updateCounter);
+  tweetBtn.addEventListener("click", postUserTweet);
+  tweetInput.addEventListener("keydown", function(e) {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      postUserTweet();
+    }
+  });
+
   // 初期化
   function init() {
     // 初期ツイート10件
