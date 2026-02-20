@@ -43,8 +43,8 @@
     var favCount = tweet.fav > 0 ? tweet.fav : "";
 
     card.innerHTML =
-      '<div class="tweet-avatar" style="background-color: ' + tweet.user.color + ';">' +
-        getInitial(tweet.user.name) +
+      '<div class="tweet-avatar">' +
+        AvatarGenerator.generate(tweet.user.screen) +
       '</div>' +
       '<div class="tweet-content">' +
         '<div class="tweet-header">' +
