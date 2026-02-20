@@ -29,30 +29,38 @@
     <!-- 左サイドバー -->
     <aside class="sidebar-left">
       <div class="profile-card">
-        <div class="profile-icon"></div>
-        <div class="profile-info">
-          <span class="profile-name">ユーザー名</span>
-          <span class="profile-screen-name">@username</span>
-        </div>
-        <div class="profile-stats">
-          <div class="stat">
-            <span class="stat-label">ツイート</span>
-            <span class="stat-value">1,234</span>
+        <div class="profile-header-bg"></div>
+        <div class="profile-body">
+          <div class="profile-icon">
+            <div class="egg-icon">
+              <div class="egg-body"></div>
+            </div>
           </div>
-          <div class="stat">
-            <span class="stat-label">フォロー</span>
-            <span class="stat-value">256</span>
+          <div class="profile-info">
+            <span class="profile-name">やまだ たろう</span>
+            <span class="profile-screen-name">@yamada_taro_11</span>
           </div>
-          <div class="stat">
-            <span class="stat-label">フォロワー</span>
-            <span class="stat-value">512</span>
+          <div class="profile-stats">
+            <a href="#" class="stat">
+              <span class="stat-label">ツイート</span>
+              <span class="stat-value">1,234</span>
+            </a>
+            <a href="#" class="stat">
+              <span class="stat-label">フォロー中</span>
+              <span class="stat-value">256</span>
+            </a>
+            <a href="#" class="stat">
+              <span class="stat-label">フォロワー</span>
+              <span class="stat-value">512</span>
+            </a>
           </div>
         </div>
       </div>
       <div class="tweet-box">
         <div class="tweet-box-label">いまどうしてる？</div>
-        <div class="tweet-box-input"></div>
+        <textarea class="tweet-box-input" placeholder="ここにツイートを入力..." disabled></textarea>
         <div class="tweet-box-footer">
+          <span class="tweet-counter">140</span>
           <button class="tweet-btn" disabled>ツイート</button>
         </div>
       </div>
@@ -73,13 +81,42 @@
       <div class="trends-box">
         <h3 class="sidebar-title">トレンド</h3>
         <ul class="trends-list">
-          <li><a href="#">#ダミートレンド</a></li>
+          <li><a href="#">#なう</a></li>
+          <li><a href="#">#わず</a></li>
+          <li><a href="#">#nowplaying</a></li>
+          <li><a href="#">#好きな人RT</a></li>
+          <li><a href="#">#followme</a></li>
+          <li><a href="#">#拡散希望</a></li>
+          <li><a href="#">#アニメ好きと繋がりたい</a></li>
         </ul>
       </div>
       <div class="suggestions-box">
         <h3 class="sidebar-title">おすすめユーザー</h3>
         <ul class="suggestions-list">
-          <li>ダミーユーザー</li>
+          <li class="suggestion-item">
+            <div class="suggestion-icon" style="background-color: #E8536D;"></div>
+            <div class="suggestion-info">
+              <span class="suggestion-name">さくら</span>
+              <span class="suggestion-screen">@sakura_cherry</span>
+            </div>
+            <button class="follow-btn">フォローする</button>
+          </li>
+          <li class="suggestion-item">
+            <div class="suggestion-icon" style="background-color: #6B8E23;"></div>
+            <div class="suggestion-info">
+              <span class="suggestion-name">りょうた</span>
+              <span class="suggestion-screen">@ryota_game</span>
+            </div>
+            <button class="follow-btn">フォローする</button>
+          </li>
+          <li class="suggestion-item">
+            <div class="suggestion-icon" style="background-color: #9B59B6;"></div>
+            <div class="suggestion-info">
+              <span class="suggestion-name">あやか</span>
+              <span class="suggestion-screen">@ayaka_music</span>
+            </div>
+            <button class="follow-btn">フォローする</button>
+          </li>
         </ul>
       </div>
     </aside>

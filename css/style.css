@@ -145,7 +145,18 @@ ul {
 
 /* --- Left Sidebar: Profile Card --- */
 .profile-card {
-  padding: 12px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.profile-header-bg {
+  height: 60px;
+  background: linear-gradient(to bottom, #55ACEE, #4A9FDB);
+}
+
+.profile-body {
+  padding: 0 12px 12px;
+  margin-top: -20px;
 }
 
 .profile-icon {
@@ -153,7 +164,28 @@ ul {
   height: 48px;
   background: #C0DEED;
   border-radius: 4px;
-  margin-bottom: 8px;
+  border: 2px solid #fff;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* たまごアイコン（旧Twitterデフォルト） */
+.egg-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.egg-body {
+  width: 20px;
+  height: 24px;
+  background: #E8E8E8;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
 }
 
 .profile-info {
@@ -175,7 +207,7 @@ ul {
 
 .profile-stats {
   display: flex;
-  gap: 12px;
+  gap: 0;
   border-top: 1px solid #E8E8E8;
   padding-top: 8px;
 }
@@ -183,16 +215,21 @@ ul {
 .stat {
   display: flex;
   flex-direction: column;
+  flex: 1;
+  text-decoration: none;
+}
+
+.stat:hover .stat-value {
+  color: #0084B4;
 }
 
 .stat-label {
   font-size: 10px;
   color: #999;
-  text-transform: uppercase;
 }
 
 .stat-value {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
   color: #0084B4;
 }
@@ -215,10 +252,23 @@ ul {
   border-radius: 3px;
   background: #F8F8F8;
   margin-bottom: 8px;
+  padding: 6px 8px;
+  font-size: 12px;
+  font-family: inherit;
+  color: #999;
+  resize: none;
 }
 
 .tweet-box-footer {
-  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.tweet-counter {
+  font-size: 12px;
+  color: #999;
 }
 
 .tweet-btn {
@@ -259,18 +309,73 @@ ul {
   border-bottom: 1px solid #E8E8E8;
 }
 
-.trends-box li,
-.suggestions-box li {
+.trends-list li {
   padding: 6px 12px;
   font-size: 12px;
   border-bottom: 1px solid #F0F0F0;
 }
 
-.trends-box li:last-child,
-.suggestions-box li:last-child {
+.trends-list li:last-child {
   border-bottom: none;
 }
 
-.trends-box a {
+.trends-list a {
   color: #0084B4;
+}
+
+.trends-list a:hover {
+  text-decoration: underline;
+}
+
+/* おすすめユーザー */
+.suggestion-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-bottom: 1px solid #F0F0F0;
+  gap: 8px;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.suggestion-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.suggestion-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.suggestion-name {
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+  color: #333;
+}
+
+.suggestion-screen {
+  display: block;
+  font-size: 11px;
+  color: #999;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.follow-btn {
+  font-size: 11px;
+  font-weight: bold;
+  color: #333;
+  background: linear-gradient(to bottom, #fff, #DEDEDE);
+  border: 1px solid #CCC;
+  border-radius: 4px;
+  padding: 3px 10px;
+  cursor: default;
+  white-space: nowrap;
 }
