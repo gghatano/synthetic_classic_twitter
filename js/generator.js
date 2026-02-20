@@ -41,6 +41,13 @@ var TweetGenerator = (function() {
     result = result.replace(/\{song\}/g, function() { return pick(VOCAB.songs); });
     result = result.replace(/\{wisdom\}/g, function() { return pick(VOCAB.wisdom); });
     result = result.replace(/\{episode\}/g, function() { return randomEpisode(); });
+    result = result.replace(/\{subject\}/g, function() { return pick(VOCAB.subjects); });
+    result = result.replace(/\{professor\}/g, function() { return pick(VOCAB.professors); });
+    result = result.replace(/\{drink\}/g, function() { return pick(VOCAB.drinks); });
+    result = result.replace(/\{company\}/g, function() { return pick(VOCAB.companies); });
+    result = result.replace(/\{game\}/g, function() { return pick(VOCAB.games); });
+    result = result.replace(/\{tv_show\}/g, function() { return pick(VOCAB.tv_shows); });
+    result = result.replace(/\{vocaloid_producer\}/g, function() { return pick(VOCAB.vocaloid_producers); });
 
     // リプライ先: 自分以外のユーザーをランダム選択
     result = result.replace(/\{mention\}/g, function() {
