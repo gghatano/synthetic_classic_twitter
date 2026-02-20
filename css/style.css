@@ -298,6 +298,142 @@ ul {
   background: #fff;
   border: 1px solid #E8E8E8;
   border-radius: 5px;
+  overflow: hidden;
+}
+
+/* --- Tweet Card --- */
+.tweet-card {
+  display: flex;
+  padding: 10px 12px;
+  border-bottom: 1px solid #E8E8E8;
+  gap: 10px;
+  animation: tweet-in 0.3s ease-out;
+}
+
+@keyframes tweet-in {
+  from {
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 200px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+.tweet-card:hover {
+  background: #F5F8FA;
+}
+
+.tweet-avatar {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.tweet-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.tweet-header {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 2px;
+}
+
+.tweet-name {
+  font-weight: bold;
+  font-size: 13px;
+  color: #333;
+}
+
+.tweet-screen {
+  font-size: 12px;
+  color: #999;
+}
+
+.tweet-time {
+  font-size: 12px;
+  color: #999;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.tweet-text {
+  font-size: 13px;
+  color: #333;
+  line-height: 1.5;
+  margin-bottom: 6px;
+  word-wrap: break-word;
+}
+
+.tweet-text .mention {
+  color: #0084B4;
+}
+
+.tweet-text .hashtag {
+  color: #0084B4;
+}
+
+/* --- Tweet Actions (Reply / RT / Fav) --- */
+.tweet-actions {
+  display: flex;
+  gap: 0;
+  margin-left: -4px;
+}
+
+.tweet-action {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 4px;
+  border-radius: 3px;
+  cursor: default;
+  font-size: 12px;
+  color: #AAB8C2;
+  min-width: 60px;
+}
+
+.tweet-action:hover {
+  background: transparent;
+}
+
+.tweet-action-icon {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.tweet-action.action-reply:hover {
+  color: #0084B4;
+}
+
+.tweet-action.action-rt:hover {
+  color: #77B255;
+}
+
+.tweet-action.action-fav:hover {
+  color: #FFAC33;
+}
+
+.tweet-action .count {
+  font-size: 11px;
+}
+
+.tweet-action .count:empty {
+  display: none;
 }
 
 /* --- Right Sidebar --- */
