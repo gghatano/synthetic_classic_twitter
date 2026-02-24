@@ -50,9 +50,12 @@
         '<div class="tweet-header">' +
           '<span class="tweet-name">' + tweet.user.name + '</span>' +
           '<span class="tweet-screen">@' + tweet.user.screen + '</span>' +
-          '<span class="tweet-time">' + formatTime(tweet.time) + '</span>' +
         '</div>' +
         '<div class="tweet-text">' + formatText(tweet.text) + '</div>' +
+        '<div class="tweet-meta">' +
+          '<span class="tweet-time">' + formatTime(tweet.time) + '</span>' +
+          (tweet.via ? ' <span class="tweet-via">via ' + tweet.via + '</span>' : '') +
+        '</div>' +
         '<div class="tweet-actions">' +
           '<span class="tweet-action action-reply">' +
             '<span class="tweet-action-icon">\u21A9</span>' +
@@ -88,7 +91,7 @@
     var cards = timelineEl.querySelectorAll(".tweet-card");
     for (var i = 0; i < cards.length; i++) {
       var time = parseInt(cards[i].getAttribute("data-time"), 10);
-      var el = cards[i].querySelector(".tweet-time");
+      var el = cards[i].querySelector(".tweet-meta .tweet-time");
       if (el) el.textContent = formatTime(time);
     }
   }
@@ -137,7 +140,8 @@
       text: text,
       time: Date.now(),
       rt: 0,
-      fav: 0
+      fav: 0,
+      via: "web"
     });
     tweetInput.value = "";
     updateCounter();

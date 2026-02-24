@@ -387,19 +387,31 @@ ul {
   color: #999;
 }
 
-.tweet-time {
-  font-size: 12px;
-  color: #999;
-  margin-left: auto;
-  white-space: nowrap;
-}
-
 .tweet-text {
   font-size: 13px;
   color: #333;
   line-height: 1.5;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   word-wrap: break-word;
+}
+
+/* --- Tweet Meta (timestamp + via) --- */
+.tweet-meta {
+  font-size: 11px;
+  color: #999;
+  margin-bottom: 4px;
+}
+
+.tweet-time {
+  color: #999;
+}
+
+.tweet-via {
+  color: #999;
+}
+
+.tweet-via::before {
+  content: " ";
 }
 
 .tweet-text .mention {
@@ -536,4 +548,30 @@ ul {
   padding: 3px 10px;
   cursor: default;
   white-space: nowrap;
+}
+
+/* --- Footer --- */
+.global-footer {
+  text-align: center;
+  padding: 20px 10px 30px;
+}
+
+.footer-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  font-size: 11px;
+  color: #999;
+}
+
+.footer-inner a {
+  color: #999;
+  margin: 0 6px;
+}
+
+.footer-inner a:hover {
+  color: #0084B4;
+}
+
+.footer-inner span {
+  margin-right: 10px;
 }

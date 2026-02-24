@@ -75,6 +75,118 @@ var TweetGenerator = (function() {
   }
 
   // ============================================================
+  // via クライアント名
+  // ============================================================
+  var clients = [
+    "web", "web",
+    "jigtwi", "jigtwi",
+    "ついっぷる", "ついっぷる",
+    "Keitai Web",
+    "Tweetbot for iOS",
+    "Twatter for iPhone",
+    "Twatter for Android",
+    "TweetDeck",
+    "Janetter",
+    "Tween",
+    "モバツイ",
+    "ケータイTwatter",
+    "twicca",
+    "Echofon",
+    "Seesmic",
+    "HootSuite"
+  ];
+
+  function randomClient() {
+    return pick(clients);
+  }
+
+  // ============================================================
+  // 非公式RT生成
+  // ============================================================
+  function generateUnofficialRT(user) {
+    // 他のユーザーの通常ツイートをRT
+    var origUser = pick(USERS);
+    while (origUser.screen === user.screen) {
+      origUser = pick(USERS);
+    }
+    var weights = CATEGORY_WEIGHTS[origUser.type] || CATEGORY_WEIGHTS.daily;
+    var category = weightedPick(weights);
+    var templates = TEMPLATES[category];
+    var template = pick(templates);
+    var origText = fillTemplate(template, origUser);
+
+    // RTコメントのバリエーション
+    var rtComments = ["", "", "", "ｗｗｗ ", "これ ", "ほんとこれ ", "わかる ", "www "];
+    var comment = pick(rtComments);
+
+    var rt = comment + "RT @" + origUser.screen + ": " + origText;
+
+    // 140字に収まるよう切り詰め
+    if (rt.length > 140) {
+      rt = rt.substring(0, 137) + "...";
+    }
+    return rt;
+  }
+
+  // ============================================================
+  // 時間帯連動ツイート
+  // ============================================================
+  var timeBasedTweets = {
+    morning: [ // 5-9時
+      "おはようございます",
+      "おはよー",
+      "おは！今日も一日がんばるぞい",
+      "朝から{weather}かー",
+      "朝ごはん{food}なう",
+      "1限間に合わない…",
+      "眠すぎて電車で寝過ごしそう",
+      "朝活なう。早起き最高。",
+      "今日の1限{subject}だるいな…"
+    ],
+    noon: [ // 11-13時
+      "お昼！{food}食べる",
+      "学食混みすぎて座れないんだが",
+      "昼飯何食べよう",
+      "午後の講義眠くなるやつだ…",
+      "{place}で{food}なう",
+      "ランチなう！"
+    ],
+    evening: [ // 17-20時
+      "帰宅わず",
+      "バイト行ってくる…",
+      "{activity}わず。つかれたー",
+      "今日の夜ご飯何にしよう",
+      "そろそろ飯の時間だ",
+      "夕方の{place}きれい"
+    ],
+    night: [ // 22-2時
+      "そろそろ寝るか",
+      "おやすみなさい",
+      "深夜のTL好き",
+      "寝れない…",
+      "深夜テンションで変なこと呟きそう",
+      "明日{activity}なのにまだ起きてるｗ",
+      "夜食に{food}食べてしまった…",
+      "おまいらおやすみ",
+      "深夜の{food}はうまい"
+    ]
+  };
+
+  function getTimeBasedTweet(user) {
+    var hour = new Date().getHours();
+    var pool = null;
+    if (hour >= 5 && hour < 9) pool = timeBasedTweets.morning;
+    else if (hour >= 11 && hour < 13) pool = timeBasedTweets.noon;
+    else if (hour >= 17 && hour < 20) pool = timeBasedTweets.evening;
+    else if (hour >= 22 || hour < 2) pool = timeBasedTweets.night;
+
+    if (pool) {
+      return fillTemplate(pick(pool), user);
+    }
+    return null;
+  }
+
+  // ============================================================
   // 長文ツイート生成システム
   // ============================================================
 
@@ -129,7 +241,7 @@ var TweetGenerator = (function() {
           "履修登録でミスって月曜1限に{subject}入れちゃったの、今期最大の後悔。先週から出席率50%切ってる" + pick(endings),
           "{subject}の講義中に寝てたら教授に当てられて「すいません聞いてませんでした」って正直に言ったらなぜか笑いが起きた",
           "テスト前に友達5人で集まって勉強会したけど、3時間中2時間半は雑談で終わった。残り30分で焦るやつ" + pick(endings),
-          "空きコマに図書館行ったら席全部埋まってて、結局学食でダラダラTwitter見て終わった。こうやって大学生活は過ぎていく…",
+          "空きコマに図書館行ったら席全部埋まってて、結局学食でダラダラTwatter見て終わった。こうやって大学生活は過ぎていく…",
           "ゼミの発表で教授に「で？」って一言だけ言われて頭真っ白になった。あの「で？」がトラウマになりそう" + pick(endings),
           "友達が「過去問あるよ」って言うから期待したら3年前のやつだった。{professor}もう変わってるんだが" + pick(endings)
         ]);
@@ -185,7 +297,7 @@ var TweetGenerator = (function() {
     love: [
       function(f, u) {
         return pick([
-          "好きな人がTwitterで他の人と楽しそうにリプしてるの見るのつらすぎる。自分からリプすればいいのに勇気が出ない…なにこのチキン",
+          "好きな人がTwatterで他の人と楽しそうにリプしてるの見るのつらすぎる。自分からリプすればいいのに勇気が出ない…なにこのチキン",
           "友達に「あの人のこと好きでしょ」ってバレた。隠してたつもりだったのに。そんなにわかりやすかったか…" + pick(endings),
           "合コンで「趣味は？」って聞かれて「アニメ鑑賞」って正直に答えたら空気が変わった。嘘つけばよかったのか…いや、これが俺だ" + pick(endings),
           "クリスマスのイルミネーション見に行く相手がいないので、一人で{place}行って{food}食べて帰ってきた。充実してたよ？充実してたから" + pick(endings)
@@ -238,13 +350,20 @@ var TweetGenerator = (function() {
     var user = pick(USERS);
     var counts = randomCounts();
     var text;
+    var r = Math.random();
 
-    // 30%の確率で長文ツイート
-    if (Math.random() < 0.3) {
+    if (r < 0.12) {
+      // 12%: 非公式RT
+      text = generateUnofficialRT(user);
+    } else if (r < 0.22) {
+      // 10%: 時間帯連動ツイート
+      text = getTimeBasedTweet(user);
+    } else if (r < 0.45) {
+      // 23%: 長文ツイート
       text = generateLong(user);
     }
 
-    // 長文が生成できなかった場合は通常テンプレート
+    // 上記で生成できなかった場合は通常テンプレート
     if (!text) {
       var weights = CATEGORY_WEIGHTS[user.type] || CATEGORY_WEIGHTS.daily;
       var category = weightedPick(weights);
@@ -258,7 +377,8 @@ var TweetGenerator = (function() {
       text: text,
       time: Date.now(),
       rt: counts.rt,
-      fav: counts.fav
+      fav: counts.fav,
+      via: randomClient()
     };
   }
 
