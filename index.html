@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Twatter / ホーム</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='8' r='7' fill='%2355ACEE'/><path d='M12,5.5 C11.5,5.8 11,5.9 10.4,6 C11,5.6 11.4,5 11.6,4.4 C11,4.8 10.4,5 9.7,5.2 C9.2,4.6 8.4,4.3 7.6,4.5 C6.4,4.8 5.7,6 6,7.2 C4.4,7.1 3,6.3 2,5.2 C1.5,6 1.8,7 2.5,7.5 C2.1,7.5 1.8,7.4 1.5,7.2 C1.5,8 2,8.8 2.8,9 C2.5,9.1 2.1,9.1 1.8,9 C2,9.8 2.7,10.3 3.6,10.3 C2.9,10.8 2,11.1 1,11 C1.9,11.5 2.9,11.8 4,11.8 C8.4,11.8 10.8,8.4 10.7,5.5 C11.2,5.2 11.6,4.8 12,4.3' fill='white'/></svg>" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ヘッダーバー -->
+  <header class="global-header">
+    <div class="header-inner">
+      <h1 class="logo">Twatter</h1>
+      <div class="header-search">
+        <input type="text" class="search-input" placeholder="検索" disabled>
+      </div>
+      <nav class="header-nav">
+        <a href="#" class="nav-link nav-active">ホーム</a>
+        <a href="#" class="nav-link">@つながり</a>
+        <a href="#" class="nav-link">ダイレクトメッセージ</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- メインコンテンツ（3カラム） -->
+  <div class="container">
+
+    <!-- 左サイドバー -->
+    <aside class="sidebar-left">
+      <div class="profile-card">
+        <div class="profile-header-bg"></div>
+        <div class="profile-body">
+          <div class="profile-icon">
+            <div class="egg-icon">
+              <div class="egg-body"></div>
+            </div>
+          </div>
+          <div class="profile-info">
+            <span class="profile-name">やまだ たろう</span>
+            <span class="profile-screen-name">@yamada_taro_11</span>
+          </div>
+          <div class="profile-stats">
+            <a href="#" class="stat">
+              <span class="stat-label">ツワット</span>
+              <span class="stat-value">1,234</span>
+            </a>
+            <a href="#" class="stat">
+              <span class="stat-label">フォロー中</span>
+              <span class="stat-value">256</span>
+            </a>
+            <a href="#" class="stat">
+              <span class="stat-label">フォロワー</span>
+              <span class="stat-value">512</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="tweet-box">
+        <div class="tweet-box-label">いまどうしてる？</div>
+        <textarea class="tweet-box-input" id="tweet-input" placeholder="いまどうしてる？" maxlength="140"></textarea>
+        <div class="tweet-box-footer">
+          <span class="tweet-counter" id="tweet-counter">140</span>
+          <button class="tweet-btn" id="tweet-btn">ツワット</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- タイムライン（メイン） -->
+    <main class="timeline">
+      <div class="timeline-header">
+        <h2>ホーム</h2>
+      </div>
+      <div id="timeline-list">
+        <!-- ツワットがここに挿入される -->
+      </div>
+    </main>
+
+    <!-- 右サイドバー -->
+    <aside class="sidebar-right">
+      <div class="trends-box">
+        <h3 class="sidebar-title">トレンド</h3>
+        <ul class="trends-list">
+          <li><a href="#">#なう</a></li>
+          <li><a href="#">#わず</a></li>
+          <li><a href="#">#nowplaying</a></li>
+          <li><a href="#">#好きな人RT</a></li>
+          <li><a href="#">#followme</a></li>
+          <li><a href="#">#拡散希望</a></li>
+          <li><a href="#">#アニメ好きと繋がりたい</a></li>
+        </ul>
+      </div>
+      <div class="suggestions-box">
+        <h3 class="sidebar-title">おすすめユーザー</h3>
+        <ul class="suggestions-list">
+          <li class="suggestion-item">
+            <div class="suggestion-icon" style="background-color: #E8536D;"></div>
+            <div class="suggestion-info">
+              <span class="suggestion-name">さくら</span>
+              <span class="suggestion-screen">@sakura_cherry</span>
+            </div>
+            <button class="follow-btn">フォローする</button>
+          </li>
+          <li class="suggestion-item">
+            <div class="suggestion-icon" style="background-color: #6B8E23;"></div>
+            <div class="suggestion-info">
+              <span class="suggestion-name">りょうた</span>
+              <span class="suggestion-screen">@ryota_game</span>
+            </div>
+            <button class="follow-btn">フォローする</button>
+          </li>
+          <li class="suggestion-item">
+            <div class="suggestion-icon" style="background-color: #9B59B6;"></div>
+            <div class="suggestion-info">
+              <span class="suggestion-name">あやか</span>
+              <span class="suggestion-screen">@ayaka_music</span>
+            </div>
+            <button class="follow-btn">フォローする</button>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- フッター -->
+  <footer class="global-footer">
+    <div class="footer-inner">
+      <span>&copy; 2012 Twatter</span>
+      <a href="#">Twatterについて</a>
+      <a href="#">ヘルプ</a>
+      <a href="#">利用規約</a>
+      <a href="#">プライバシーポリシー</a>
+      <a href="#">ブログ</a>
+      <a href="#">ステータス</a>
+      <a href="#">アプリ</a>
+      <a href="#">採用情報</a>
+      <a href="#">広告</a>
+    </div>
+  </footer>
+
+  <script src="js/users.js"></script>
+  <script src="js/tweets.js"></script>
+  <script src="js/avatar.js"></script>
+  <script src="js/generator.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,577 @@
+/* ============================================
+   Old Twitter - Style
+   2010-2012年頃の旧Twitter UIを再現
+   ============================================ */
+
+/* --- Reset & Base --- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic Pro", Meiryo, sans-serif;
+  font-size: 13px;
+  color: #333;
+  background-color: #C0DEED;
+  line-height: 1.5;
+}
+
+a {
+  color: #0084B4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+ul {
+  list-style: none;
+}
+
+/* --- Header Bar --- */
+.global-header {
+  background: linear-gradient(to bottom, #55ACEE, #2795D9);
+  border-bottom: 1px solid #1a7ab5;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: 40px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 10px;
+}
+
+.logo {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  margin-right: 20px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.header-search {
+  flex: 0 0 220px;
+  margin-right: auto;
+}
+
+.search-input {
+  width: 100%;
+  height: 26px;
+  padding: 2px 8px;
+  font-size: 12px;
+  border: 1px solid #1a7ab5;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  outline: none;
+}
+
+.header-nav {
+  display: flex;
+  gap: 4px;
+}
+
+.nav-link {
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+  white-space: nowrap;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.15);
+  text-decoration: none;
+}
+
+.nav-link.nav-active {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* --- 3-Column Layout --- */
+.container {
+  max-width: 960px;
+  margin: 54px auto 20px;
+  display: flex;
+  gap: 14px;
+  padding: 0 10px;
+}
+
+.sidebar-left {
+  flex: 0 0 220px;
+  min-width: 0;
+}
+
+.timeline {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.sidebar-right {
+  flex: 0 0 220px;
+  min-width: 0;
+}
+
+/* --- Common Box Style --- */
+.profile-card,
+.tweet-box,
+.trends-box,
+.suggestions-box,
+.timeline-header {
+  background: #fff;
+  border: 1px solid #E8E8E8;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+/* --- Left Sidebar: Profile Card --- */
+.profile-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.profile-header-bg {
+  height: 60px;
+  background: linear-gradient(to bottom, #55ACEE, #4A9FDB);
+}
+
+.profile-body {
+  padding: 0 12px 12px;
+  margin-top: -20px;
+}
+
+.profile-icon {
+  width: 48px;
+  height: 48px;
+  background: #C0DEED;
+  border-radius: 4px;
+  border: 2px solid #fff;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* たまごアイコン（旧Twitterデフォルト） */
+.egg-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.egg-body {
+  width: 20px;
+  height: 24px;
+  background: #E8E8E8;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+}
+
+.profile-info {
+  margin-bottom: 10px;
+}
+
+.profile-name {
+  display: block;
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+}
+
+.profile-screen-name {
+  display: block;
+  font-size: 11px;
+  color: #999;
+}
+
+.profile-stats {
+  display: flex;
+  gap: 0;
+  border-top: 1px solid #E8E8E8;
+  padding-top: 8px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  text-decoration: none;
+}
+
+.stat:hover .stat-value {
+  color: #0084B4;
+}
+
+.stat-label {
+  font-size: 10px;
+  color: #999;
+}
+
+.stat-value {
+  font-size: 16px;
+  font-weight: bold;
+  color: #0084B4;
+}
+
+/* --- Left Sidebar: Tweet Box --- */
+.tweet-box {
+  padding: 12px;
+}
+
+.tweet-box-label {
+  font-size: 13px;
+  color: #999;
+  margin-bottom: 8px;
+}
+
+.tweet-box-input {
+  width: 100%;
+  height: 50px;
+  border: 1px solid #E8E8E8;
+  border-radius: 3px;
+  background: #F8F8F8;
+  margin-bottom: 8px;
+  padding: 6px 8px;
+  font-size: 12px;
+  font-family: inherit;
+  color: #999;
+  resize: none;
+}
+
+.tweet-box-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.tweet-counter {
+  font-size: 12px;
+  color: #999;
+}
+
+.tweet-box-input:focus {
+  border-color: #55ACEE;
+  background: #fff;
+  color: #333;
+  outline: none;
+}
+
+.tweet-btn {
+  background: linear-gradient(to bottom, #55ACEE, #2795D9);
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  border: 1px solid #1a7ab5;
+  border-radius: 4px;
+  padding: 5px 14px;
+  cursor: default;
+  opacity: 0.6;
+}
+
+.tweet-btn.active {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.tweet-btn.active:hover {
+  background: linear-gradient(to bottom, #6FBEF5, #2795D9);
+}
+
+.tweet-counter.warning {
+  color: #D40D12;
+  font-weight: bold;
+}
+
+/* --- Timeline --- */
+.timeline-header {
+  padding: 10px 12px;
+}
+
+.timeline-header h2 {
+  font-size: 15px;
+  font-weight: bold;
+  color: #333;
+}
+
+#timeline-list {
+  background: #fff;
+  border: 1px solid #E8E8E8;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+/* --- Tweet Card --- */
+.tweet-card {
+  display: flex;
+  padding: 10px 12px;
+  border-bottom: 1px solid #E8E8E8;
+  gap: 10px;
+  animation: tweet-in 0.3s ease-out;
+}
+
+@keyframes tweet-in {
+  from {
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 200px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+.tweet-card:hover {
+  background: #F5F8FA;
+}
+
+.tweet-avatar {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.tweet-avatar svg {
+  display: block;
+  width: 48px;
+  height: 48px;
+}
+
+.tweet-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.tweet-header {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 2px;
+}
+
+.tweet-name {
+  font-weight: bold;
+  font-size: 13px;
+  color: #333;
+}
+
+.tweet-screen {
+  font-size: 12px;
+  color: #999;
+}
+
+.tweet-text {
+  font-size: 13px;
+  color: #333;
+  line-height: 1.5;
+  margin-bottom: 4px;
+  word-wrap: break-word;
+}
+
+/* --- Tweet Meta (timestamp + via) --- */
+.tweet-meta {
+  font-size: 11px;
+  color: #999;
+  margin-bottom: 4px;
+}
+
+.tweet-time {
+  color: #999;
+}
+
+.tweet-via {
+  color: #999;
+}
+
+.tweet-via::before {
+  content: " ";
+}
+
+.tweet-text .mention {
+  color: #0084B4;
+}
+
+.tweet-text .hashtag {
+  color: #0084B4;
+}
+
+/* --- Tweet Actions (Reply / RT / Fav) --- */
+.tweet-actions {
+  display: flex;
+  gap: 0;
+  margin-left: -4px;
+}
+
+.tweet-action {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 4px;
+  border-radius: 3px;
+  cursor: default;
+  font-size: 12px;
+  color: #AAB8C2;
+  min-width: 60px;
+}
+
+.tweet-action:hover {
+  background: transparent;
+}
+
+.tweet-action-icon {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.tweet-action.action-reply:hover {
+  color: #0084B4;
+}
+
+.tweet-action.action-rt:hover {
+  color: #77B255;
+}
+
+.tweet-action.action-fav:hover {
+  color: #FFAC33;
+}
+
+.tweet-action .count {
+  font-size: 11px;
+}
+
+.tweet-action .count:empty {
+  display: none;
+}
+
+/* --- Right Sidebar --- */
+.sidebar-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  padding: 10px 12px;
+  border-bottom: 1px solid #E8E8E8;
+}
+
+.trends-list li {
+  padding: 6px 12px;
+  font-size: 12px;
+  border-bottom: 1px solid #F0F0F0;
+}
+
+.trends-list li:last-child {
+  border-bottom: none;
+}
+
+.trends-list a {
+  color: #0084B4;
+}
+
+.trends-list a:hover {
+  text-decoration: underline;
+}
+
+/* おすすめユーザー */
+.suggestion-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-bottom: 1px solid #F0F0F0;
+  gap: 8px;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.suggestion-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.suggestion-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.suggestion-name {
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+  color: #333;
+}
+
+.suggestion-screen {
+  display: block;
+  font-size: 11px;
+  color: #999;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.follow-btn {
+  font-size: 11px;
+  font-weight: bold;
+  color: #333;
+  background: linear-gradient(to bottom, #fff, #DEDEDE);
+  border: 1px solid #CCC;
+  border-radius: 4px;
+  padding: 3px 10px;
+  cursor: default;
+  white-space: nowrap;
+}
+
+/* --- Footer --- */
+.global-footer {
+  text-align: center;
+  padding: 20px 10px 30px;
+}
+
+.footer-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  font-size: 11px;
+  color: #999;
+}
+
+.footer-inner a {
+  color: #999;
+  margin: 0 6px;
+}
+
+.footer-inner a:hover {
+  color: #0084B4;
+}
+
+.footer-inner span {
+  margin-right: 10px;
+}
