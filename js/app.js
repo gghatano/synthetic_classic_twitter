@@ -61,16 +61,44 @@
             '<span class="tweet-action-icon">\u21A9</span>' +
             '<span class="count"></span>' +
           '</span>' +
-          '<span class="tweet-action action-rt">' +
+          '<span class="tweet-action action-rt" data-count="' + tweet.rt + '">' +
             '<span class="tweet-action-icon">\u267A</span>' +
             '<span class="count">' + rtCount + '</span>' +
           '</span>' +
-          '<span class="tweet-action action-fav">' +
+          '<span class="tweet-action action-fav" data-count="' + tweet.fav + '">' +
             '<span class="tweet-action-icon">\u2606</span>' +
             '<span class="count">' + favCount + '</span>' +
           '</span>' +
         '</div>' +
       '</div>';
+
+    // RT ボタン
+    var rtBtn = card.querySelector(".action-rt");
+    rtBtn.addEventListener("click", function() {
+      if (this.classList.contains("active")) return;
+      this.classList.add("active");
+      var c = parseInt(this.getAttribute("data-count"), 10) + 1;
+      this.setAttribute("data-count", c);
+      this.querySelector(".count").textContent = c;
+    });
+
+    // FAV ボタン（トグル: ☆ ⇔ ★）
+    var favBtn = card.querySelector(".action-fav");
+    favBtn.addEventListener("click", function() {
+      var c = parseInt(this.getAttribute("data-count"), 10);
+      var icon = this.querySelector(".tweet-action-icon");
+      if (this.classList.contains("active")) {
+        this.classList.remove("active");
+        icon.textContent = "\u2606";
+        c = Math.max(0, c - 1);
+      } else {
+        this.classList.add("active");
+        icon.textContent = "\u2605";
+        c = c + 1;
+      }
+      this.setAttribute("data-count", c);
+      this.querySelector(".count").textContent = c > 0 ? c : "";
+    });
 
     return card;
   }
